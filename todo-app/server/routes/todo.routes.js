@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     });
     try{
         const newToDo = await todo.save();
-        res.status(201);
+        res.status(201).json(newToDo);
     }
     catch(error){
         res.status(400).json({message:error.message});
@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
 })
 
 //Update todo text text and/or completed 
-router.put('/:id', async (req, res) => {
+router.patch('/:id', async (req, res) => {
     try{
         const findToDo = await ToDo.findById(req.params.id);
         if(! findToDo){
@@ -60,7 +60,7 @@ router.delete("/:id", async (req, res) => {
         res.json({message:"ToDo updated"})
     }
     catch(error){
-         return req.status(500).json({message:error.message})
+         return res.status(500).json({message:error.message})
     }
     
    

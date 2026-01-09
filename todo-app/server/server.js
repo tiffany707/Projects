@@ -7,12 +7,9 @@ import todoRouter from "./routes/todo.routes.js"
 
 const app = express();
 
+app.use(express.json());
 app.use("/api/todos", todoRouter);
 
-app.get("/", (req,res) => {
-    res.send("This is the main page");
-    res.end;
-}) 
 
 
 app.listen(5000, () => {
